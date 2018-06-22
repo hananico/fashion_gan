@@ -23,16 +23,23 @@ def get_batch(file_h5, features, batch_number, batch_size=32):
 
 
 # open the file
-file_h5 = h5py.File('ssense_256_256_train.h5', mode='r')
+file_h5 = h5py.File('data/fashiongen_256_256_train.h5', mode='r')
 # define the features to be retrieved
 list_of_features = ['input_image', 'input_description']
 
 dataset_len = len(file_h5['input_image'])
-nb_batches = int(dataset_len / BATCH_SIZE)
+# nb_batches = int(dataset_len / BATCH_SIZE)
+#
+# batch_nb = np.random.randint(0, nb_batches)
 
-batch_nb = np.random.randint(0, nb_batches)
+for idx in range(0, dataset_len):
+    img = file_h5['input_image'][idx]
+    text = file_h5['input_description'][idx]
+    #print("[%d] %s" % (idx, text))
+    print(text[0])
 
-# get the first batch of the data
-list_of_arrays = get_batch(file_h5, list_of_features, batch_nb, BATCH_SIZE)
+# # get the first batch of the data
+# list_of_arrays = get_batch(file_h5, list_of_features, batch_nb, BATCH_SIZE)
 # close the file
 file_h5.close()
+

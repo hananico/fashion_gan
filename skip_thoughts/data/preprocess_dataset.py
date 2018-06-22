@@ -42,7 +42,7 @@ import os
 import numpy as np
 import tensorflow as tf
 
-from skip_thoughts.data import special_words
+from data import special_words
 
 FLAGS = tf.flags.FLAGS
 
